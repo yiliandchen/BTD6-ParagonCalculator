@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class TowerCost : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class TowerCost : MonoBehaviour
             {
                 string towerName = costData[0].Split(',')[0];
                 Tower tower = ScriptableObject.CreateInstance<Tower>();
-                tower.setCost(costData);
+                tower.SetCost(costData);
                 towerCostData.Add(towerName, tower);
 
                 count = -1;
@@ -32,15 +33,15 @@ public class TowerCost : MonoBehaviour
         }
     }
 
-    public int getTowerCost(string towerName, string upgrades)
+    public int GetTowerCost(string towerName, string upgrades)
     {
         Tower tower = towerCostData[towerName];
         
         // Paragon cost
-        if (upgrades == "Paragon") { return tower.getParagonCost(); }
+        if (upgrades == "Paragon") { return tower.GetParagonCost(); }
 
         // Upgrade cost
-        return tower.getUpgradeCost(upgrades);
+        return tower.GetUpgradeCost(upgrades);
     }
 }
 
@@ -54,7 +55,7 @@ public class Tower: ScriptableObject
         {0, 0, 0, 0, 0, 0},
     };
 
-    public void setCost(string[] costData)
+    public void SetCost(string[] costData)
     {
         for (int i = 0;  i < costData.Length; i++)
         {
@@ -72,17 +73,17 @@ public class Tower: ScriptableObject
         }
     }
 
-    public int getBaseCost()
+    public int GetBaseCost()
     {
         return baseCost;
     }
     
-    public int getParagonCost()
+    public int GetParagonCost()
     {
         return paragonCost;
     }
     
-    public int getUpgradeCost(string upgrades)
+    public int GetUpgradeCost(string upgrades)
     {
         int cost = baseCost;
         

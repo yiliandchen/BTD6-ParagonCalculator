@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tower Cost
   - Custom Round
+  - Difficulty Cost Scale
   layers:
   - Default
   - TransparentFX
