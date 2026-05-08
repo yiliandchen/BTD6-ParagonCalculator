@@ -3,10 +3,11 @@ using TMPro;
 
 public class UpgradesValidation : MonoBehaviour
 {
-    public TMP_InputField inputField;
-    
+    [SerializeField] private TMP_InputField inputField;
+    private int path, high_tier;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void CheckUpgrade(string input)
+    public void YDC_RunFunction(string input)
     {
         // Checking number of characters
         if (input.Length != 3)
@@ -16,7 +17,7 @@ public class UpgradesValidation : MonoBehaviour
         }
 
         // Check valid upgrades
-        int path = 0, high_tier = 0;
+        path = 0; high_tier = 0;
         foreach (char c in input)
         {
             // Check correct tiers

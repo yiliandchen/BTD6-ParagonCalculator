@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2151
     height: 1187
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -715,7 +715,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: []
     m_LastClickedEntityId:
       m_Data: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -844,7 +844,17 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
+      - m_Data: -116992
+      - m_Data: -84808
+      - m_Data: -84804
+      - m_Data: -79426
+      - m_Data: -79422
+      - m_Data: -61260
+      - m_Data: -2504
       - m_Data: -1386
+      - m_Data: 51412
+      - m_Data: 51462
+      - m_Data: 51498
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1494,9 +1504,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -0.6690378, y: -0.8139262, z: 0.07970993}
+    m_Target: {x: -2.7033145, y: -1.316238, z: -0.0356248}
     speed: 2
-    m_Value: {x: -0.6690378, y: -0.8139262, z: 0.07970993}
+    m_Value: {x: -2.7033145, y: -1.316238, z: -0.0356248}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1547,9 +1557,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.0546086
+    m_Target: 4.428511
     speed: 2
-    m_Value: 3.0546086
+    m_Value: 4.428511
   m_Ortho:
     m_Target: 1
     speed: 2
