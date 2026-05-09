@@ -6,13 +6,14 @@ public class CostCalculation : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI towerNameInp;
     [SerializeField] private TMP_Dropdown difficultyInp;
-    [SerializeField] private TMP_InputField upgradesInp, towersInp, discountInp;
+    [SerializeField] private TMP_InputField upgradesInp, towersInp;
     [SerializeField] private TextMeshProUGUI cost;
+    
     private TowerCost towerCostData;
     private DifficultyCostScale difficultyCostScale;
     private NKCustomRound customRound;
 
-    public void Start()
+    void Start()
     {
         towerCostData = GameObject.FindWithTag("Tower Cost").GetComponent<TowerCost>();
         difficultyCostScale = GameObject.FindWithTag("Difficulty Cost Scale").GetComponent<DifficultyCostScale>();
@@ -25,7 +26,6 @@ public class CostCalculation : MonoBehaviour
         string difficulty = difficultyInp.options[difficultyInp.value].text;
         string upgrades = upgradesInp.text;
         string towers = towersInp.text;
-        string discount = discountInp.text;
 
         if (string.IsNullOrEmpty(upgrades))
         {
@@ -35,19 +35,31 @@ public class CostCalculation : MonoBehaviour
         {
             towers = "1";
         }
-        if (string.IsNullOrEmpty(discount))
-        {
-            discount = "0";
-        }
 
-        int towerCost = towerCostData.GetTowerCost(towerName, upgrades);
-        int noTowers = int.Parse(towers);
-        float costFraction = (100 - float.Parse(discount)) / 100;
-
+        // Calculating tower cost
+        float totalCost, upgradeCost;
         float difficultyScale = difficultyCostScale.GetDifficultyCostScale(difficulty);
+        
+        totalCost = 0;
 
-        float totalCost = (towerCost * noTowers * costFraction * difficultyScale);
-        totalCost = customRound.NKRound(totalCost);
+        upgradeCost = towerCostData.GetUpgradeCost(towerName, 0, 0); // Base cost at [0,0]
+        upgradeCost *= difficultyScale;
+        totalCost += customRound.NKRound(upgradeCost);
+
+        for (int path = 1; path <= 3; path++)
+        {
+            int towerTier = upgrades[path - 1] - '0';
+            for (int tier = 0; tier <= towerTier; tier++)
+            {
+                upgradeCost = towerCostData.GetUpgradeCost(towerName, path, tier);
+                upgradeCost *= difficultyScale;
+                totalCost += customRound.NKRound(upgradeCost);
+            }
+        }
+        
+        int noTowers = int.Parse(towers);
+        totalCost *= noTowers;
+        
         if (totalCost >= 1000000)
         {
             cost.text = Math.Round(totalCost / 1000000, 2).ToString() + 'M';

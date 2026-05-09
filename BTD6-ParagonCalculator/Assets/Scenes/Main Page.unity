@@ -345,6 +345,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &63956286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 63956288}
+  - component: {fileID: 63956287}
+  m_Layer: 0
+  m_Name: Tower Discount
+  m_TagString: Tower Discount
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &63956287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63956286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccd25dc7fee5f044b3489418ae2cacf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Discount
+--- !u!4 &63956288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63956286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112004992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4571,7 +4615,6 @@ MonoBehaviour:
   difficultyInp: {fileID: 1737377402}
   upgradesInp: {fileID: 126731486}
   towersInp: {fileID: 1999871644}
-  discountInp: {fileID: 1167199280}
   cost: {fileID: 770889471}
 --- !u!1 &1971920572
 GameObject:
@@ -5413,4 +5456,5 @@ SceneRoots:
   - {fileID: 1889526996}
   - {fileID: 38671437}
   - {fileID: 206794626}
+  - {fileID: 63956288}
   - {fileID: 1125276968}

@@ -33,23 +33,20 @@ public class TowerCost : MonoBehaviour
         }
     }
 
-    public int GetTowerCost(string towerName, string upgrades)
+    public int GetUpgradeCost(string towerName, int path, int tier)
     {
         Tower tower = towerCostData[towerName];
-        
-        // Paragon cost
-        if (upgrades == "Paragon") { return tower.GetParagonCost(); }
-
-        // Upgrade cost
-        return tower.GetUpgradeCost(upgrades);
+        return tower.GetUpgradeCost(path, tier);
+        // Base cost at [0,0], Paragon cost at [0,5]
     }
 }
 
 public class Tower: ScriptableObject
 {
-    private int baseCost, paragonCost;
+    // Base cost at [0,0], Paragon cost at [0,5]
     private int[,] upgradeCost =
     {
+        {0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0},
@@ -57,48 +54,25 @@ public class Tower: ScriptableObject
 
     public void SetCost(string[] costData)
     {
-        for (int i = 0;  i < costData.Length; i++)
+        for (int i = 0;  i < 3; i++)
         {
+            int path = i + 1;
             string[] pathCostData = costData[i].Split(',');
 
             // Get base and paragon cost
-            if (i == 1) { baseCost = int.Parse(pathCostData[0]); }
-            if (i == 2) { paragonCost = int.Parse(pathCostData[0]); }
+            if (i == 1) { upgradeCost[0,0] = int.Parse(pathCostData[0]); }
+            if (i == 2) { upgradeCost[0,5] = int.Parse(pathCostData[0]); }
 
             // Fill in tier costs
-            for (int j = 1;  j < pathCostData.Length; j++)
+            for (int tier = 1; tier <= 5; tier++)
             {
-                upgradeCost[i, j] = int.Parse(pathCostData[j]);
+                upgradeCost[path, tier] = int.Parse(pathCostData[tier]);
             }
         }
     }
 
-    public int GetBaseCost()
+    public int GetUpgradeCost(int path, int tier)
     {
-        return baseCost;
-    }
-    
-    public int GetParagonCost()
-    {
-        return paragonCost;
-    }
-    
-    public int GetUpgradeCost(string upgrades)
-    {
-        int cost = baseCost;
-        
-        // Iterating through path
-        for (int i = 0; i < upgrades.Length; i++)
-        {
-            int upgrade = upgrades[i] - '0';
-            
-            // Iterating through tier
-            for (int j = 0; j < upgrade + 1; j++)
-            {
-                cost += upgradeCost[i, j];
-            }
-        }
-
-        return cost;
+        return upgradeCost[path, tier];
     }
 }
